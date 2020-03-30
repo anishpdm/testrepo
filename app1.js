@@ -11,9 +11,9 @@ app.use(bodyParser.urlencoded({
 
 
 app.get('/', (req, res) => {
-    var sum = a + b;
+
     res.json({
-        "result": sum
+        "result": "test"
     });
 
 });
