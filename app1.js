@@ -33,13 +33,13 @@ app.get('/', (req, res) => {
 });
 
 
-app.post('/reg', (req, res) => {
+app.post('/reg', async(req, res) => {
 
 
     try {
 
         var studentData = new studentModel(req.body);
-        var result = studentData.save();
+        var result = await studentData.save();
 
         res.json(result);
 
