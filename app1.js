@@ -19,7 +19,7 @@ const studentSchema = new Mongoose.Schema({
 
 var studentModel = Mongoose.model('students', studentSchema);
 
-Mongoose.connect("mongodb+srv://anishsnair:hello12345@cluster0-rqfpy.mongodb.net/test?retryWrites=true&w=majority");
+Mongoose.connect("mongodb+srv://anish:anish@cluster0-zf1or.mongodb.net/test?retryWrites=true&w=majority");
 
 
 
