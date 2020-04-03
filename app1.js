@@ -39,7 +39,7 @@ app.post('/reg', (req, res) => {
     try {
 
         var studentData = new studentModel(req.body);
-        var result = await studentData.save();
+        var result = studentData.save();
 
         res.json(result);
 
