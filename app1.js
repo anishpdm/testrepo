@@ -22,18 +22,13 @@ var studentModel = Mongoose.model('students', studentSchema);
 Mongoose.connect("mongodb+srv://anish:anish@cluster0-zf1or.mongodb.net/test?retryWrites=true&w=majority");
 
 
-
-
-
-
-
 app.get('/', (req, res) => {
 
     res.send("hai..");
 });
 
 
-app.post('/reg', async(req, res) => {
+app.post('/reg', async (req, res) => {
 
 
     try {
@@ -50,6 +45,30 @@ app.post('/reg', async(req, res) => {
 
 
 });
+
+
+app.get('/viewall', async (req, res) => {
+
+    try {
+
+        var result = await studentModel.find();
+        res.send(result);
+
+
+    } catch (error) {
+
+        console.log(error);
+        res.status(500).send(error);
+
+    }
+
+});
+
+
+
+
+
+
 
 app.listen(process.env.PORT || 3000, () => {
     console.log("server started");
