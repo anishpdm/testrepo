@@ -106,14 +106,13 @@ app.post('/check', async (req, res) => {
         var searchroll = req.body.myroll;
 
         studentModel.find({
-            $and: [
-               {
-                   "adminNo": searchadmno
+            $and: [{
+                    "adminNo": searchadmno
                 },
                 {
-                  "roll":searchroll
+                    "roll": searchroll
                 }
-           ]
+            ]
         }, (error, data) => {
 
             if (error) {
