@@ -97,38 +97,35 @@ app.post('/search', async (req, res) => {
 });
 
 
+
 app.post('/check', async (req, res) => {
 
     try {
 
-        var searchadm = req.body.myadm;
+        var searchadmno = req.body.myadmno;
         var searchroll = req.body.myroll;
 
         studentModel.find({
-                $and: [{
-                        "adminNo": searchadm
-                    },
-                    {
-                        "roll": searchroll
-                    }
-                ]
-
-
-            },
-
-
-            (error, data) => {
-
-                if (error) {
-                    throw error;
-
-                } else {
-
-                    res.send(data);
-
+            $and: [
+               {
+                   "adminNo": searchadmno
+                },
+                {
+                  "roll":searchroll
                 }
+           ]
+        }, (error, data) => {
 
-            });
+            if (error) {
+                throw error;
+
+            } else {
+
+                res.send(data);
+
+            }
+
+        });
 
     } catch (error) {
 
@@ -140,7 +137,6 @@ app.post('/check', async (req, res) => {
 
 
 });
-
 
 
 
