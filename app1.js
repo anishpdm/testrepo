@@ -68,25 +68,73 @@ app.post('/search', async (req, res) => {
 
     try {
 
-        studentModel.find(req.body, (error, data) => {
-            
-            if (error) {
-        throw error;
-  
-            }
-            else {
+        var searchkey = req.body.mydata;
 
-                  res.send(data);
-      
+        studentModel.find({
+            "adminNo": searchkey
+        }, (error, data) => {
+
+            if (error) {
+                throw error;
+
+            } else {
+
+                res.send(data);
+
             }
-           
-       });
-        
+
+        });
+
     } catch (error) {
 
-         console.log(error);
-         res.status(500).send(error);
-        
+        console.log(error);
+        res.status(500).send(error);
+
+    }
+
+
+
+});
+
+
+app.post('/check', async (req, res) => {
+
+    try {
+
+        var searchadm = req.body.myadm;
+        var searchroll = req.body.myroll;
+
+        studentModel.find({
+                $and: [{
+                        "adminNo": searchadm
+                    },
+                    {
+                        "roll": searchroll
+                    }
+                ]
+
+
+            },
+
+
+            (error, data) => {
+
+                if (error) {
+                    throw error;
+
+                } else {
+
+                    res.send(data);
+
+                }
+
+            });
+
+    } catch (error) {
+
+        console.log(error);
+        res.status(500).send(error);
+
     }
 
 
