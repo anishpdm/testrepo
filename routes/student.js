@@ -129,6 +129,32 @@ router.post('/check', async (req, res) => {
 
 });
 
+router.post('/delete', (req, res) => {
+
+    try {
+
+        studentModel.findByIdAndDelete(req.body._id, (error, data) => {
+
+            if (error) {
+                res.json({
+                    "status": "error"
+                });
+
+            } else {
+                res.json({
+                    "status": "deleted successfully"
+                });
+
+            }
+
+        })
+
+    } catch (error) {
+
+    }
+
+})
+
 
 
 router.post('/update', (req, res) => {
