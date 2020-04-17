@@ -22,7 +22,7 @@ const markSchema = new Mongoose.Schema({
 
 });
 
-var markModel = Mongoose.model('Marks', markSchema);
+var markModel = Mongoose.model('marks', markSchema);
 
 module.exports = {
     markModel

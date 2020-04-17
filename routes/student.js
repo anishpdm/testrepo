@@ -218,31 +218,25 @@ router.post('/addmarks', async (req, res) => {
 
 router.get('/viewmarks', async (req, res) => {
 
-    try {
 
-        studentModel.aggregate(
-            [{
-                $lookup: {
-                    from: "Marks",
-                    localField: "_id",
-                    foreignField: "studentId",
-                    as: "marks"
 
-                }
-
-            }], (error, data) => {
-                return res.json(data);
+    studentModel.aggregate(
+        [{
+            $lookup: {
+                from: "marks",
+                localField: "_id",
+                foreignField: "studentId",
+                as: "studentmarks"
 
             }
-        )
+
+        }], (error, data) => {
+            return res.json(data);
+
+        }
+    )
 
 
-    } catch (error) {
-
-        console.log(error);
-        res.status(500).send(error);
-
-    }
 
 });
 
