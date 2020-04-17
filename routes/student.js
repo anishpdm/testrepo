@@ -220,8 +220,21 @@ router.get('/viewmarks', async (req, res) => {
 
     try {
 
-        var result = await markModel.find();
-        res.send(result);
+        studentModel.aggregate(
+            [{
+                $lookup: {
+                    from: "Marks",
+                    localField: "_id",
+                    foreignField: "studentId",
+                    as: "marks"
+
+                }
+
+            }], (error, data) => {
+                return res.json(data);
+
+            }
+        )
 
 
     } catch (error) {
