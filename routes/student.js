@@ -1,8 +1,12 @@
 var express = require('express')
 var {
+    markModel
+} = require('../models/markModel')
+
+
+var {
     studentModel
 } = require('../models/studentModel')
-
 
 const router = express.Router();
 
@@ -141,9 +145,16 @@ router.post('/delete', (req, res) => {
                 });
 
             } else {
-                res.json({
-                    "status": "deleted successfully"
-                });
+
+                if (data.length > 0) {
+
+                    res.json({
+                        "status": "deleted successfully"
+                    });
+
+                }
+
+
 
             }
 
@@ -186,6 +197,41 @@ router.post('/update', (req, res) => {
 
 });
 
+
+
+router.post('/addmarks', async (req, res) => {
+
+    try {
+
+        var markData = new markModel(req.body);
+        var result = await markData.save();
+
+        res.json(result);
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error);
+    }
+
+});
+
+
+router.get('/viewmarks', async (req, res) => {
+
+    try {
+
+        var result = await markModel.find();
+        res.send(result);
+
+
+    } catch (error) {
+
+        console.log(error);
+        res.status(500).send(error);
+
+    }
+
+});
 
 
 

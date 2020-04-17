@@ -1,8 +1,13 @@
 var Mongoose = require('mongoose');
 
 const studentSchema = new Mongoose.Schema({
-    name: String,
-    roll: Number,
+    name: {
+        type:String
+    },
+    roll: {
+        type:Number
+    },
+        
     adminNo: Number,
     clg: String
 
